@@ -23,26 +23,6 @@ function createTableUsers($conn){
     mysqli_query($conn, $sql);
 }
 
-function createTableEnquiry($conn){
-    $sql = "CREATE TABLE IF NOT EXISTS enquiry (
-        enq_Id INT(11) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-        enq_FirstName VARCHAR(128) NOT NULL,
-        enq_LastName VARCHAR(128) NOT NULL,
-        enq_Email VARCHAR(128) NOT NULL,
-        enq_Phone VARCHAR(128) NOT NULL,
-        enq_StreetAddress VARCHAR(128) NOT NULL,
-        enq_City VARCHAR(128) NOT NULL,
-        enq_State VARCHAR(128) NOT NULL,
-        enq_Postcode VARCHAR(128) NOT NULL,
-        enq_Subject VARCHAR(128) NOT NULL,
-        enq_Products VARCHAR(128) NOT NULL,
-        enq_Comments VARCHAR(128) NOT NULL,
-        enq_Date TIMESTAMP
-    )";
-
-    mysqli_query($conn, $sql);
-}
-
 $serverName = "localhost";
 $dBUsername = "root";
 $dBPassword = "";
@@ -57,4 +37,3 @@ $conn = mysqli_connect($serverName, $dBUsername, $dBPassword, $dBName);
 checkConnection($conn);
 
 createTableUsers($conn);
-createTableEnquiry($conn);

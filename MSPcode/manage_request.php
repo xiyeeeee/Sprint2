@@ -52,6 +52,7 @@
   if (mysqli_num_rows($result) > 0) {
     echo "<table>";
     echo "<tr>";
+		echo "<th>Date & Time</th>";
     echo "<th>Name</th>";
     echo "<th>Training</th>";
     echo "<th>Location</th>";
