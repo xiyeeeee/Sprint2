@@ -14,15 +14,15 @@ if (isset($_POST["delete"])){
 
 
     if (emptyInputDelete($password, $password_repeat) !== false){
-        header("location: ../profile.php?error=emptyfields");
+        header("location: ../delete_acc.php?error=emptyfields");
         exit();
     }
     if (wrongPassword($conn, $password, $username) !== false){
-        header("location: ../profile.php?error=passworderror");
+        header("location: ../delete_acc.php?error=passworderror");
         exit();
     }
     if (pwdMatchDelete($password, $password_repeat) !== false){
-        header("location: ../profile.php?error=passwordnotsame");
+        header("location: ../delete_acc.php?error=passwordnotsame");
         exit();
     }
     deleteUser($conn, $userID, $currentID);

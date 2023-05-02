@@ -30,7 +30,7 @@
     $output = "";
     // Check if image file is a actual image or fake image
     if(isset($_POST["submit"])) {
-        $target_dir = "img/";
+        $target_dir = "img/trainingImg/";
         $target_file = $target_dir . $_POST["tName"] . ".png";
         $uploadOk = 1;
         $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));

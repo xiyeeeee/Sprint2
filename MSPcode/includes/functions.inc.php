@@ -62,15 +62,17 @@ function uidExists($conn, $username, $email){
     mysqli_stmt_close($stmt);
 }
 
-function createUser($conn, $name, $email, $username, $pwd){
-    $sql = "INSERT INTO users (usersName, usersEmail, usersUid, usersPwd) VALUES (?, ?, ?, ?);";
+function createUser($conn, $name, $email, $username, $password) {
+    $sql = "INSERT INTO users (usersName, usersEmail, usersUid, usersPwd) VALUES (?, ?, ?, ?)";
     $stmt = mysqli_stmt_init($conn);
-    if (!mysqli_stmt_prepare($stmt, $sql)){
+    if (!mysqli_stmt_prepare($stmt, $sql)) {
         header("location: ../register.php?error=stmtfailed");
         exit();
     }
 
-    mysqli_stmt_bind_param($stmt, "ssss", $name, $email, $username, $pwd);
+    $hashedPwd = password_hash($password, PASSWORD_DEFAULT);
+
+    mysqli_stmt_bind_param($stmt, "ssss", $name, $email, $username, $hashedPwd);
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
     header("location: ../register.php?error=none");
@@ -87,7 +89,7 @@ function emptyInputLogin($username, $pwd){
     return $result;
 }
 
-function loginUser($conn, $username, $pwd){
+function loginUser($conn, $username, $password) {
     $uidExists = uidExists($conn, $username, $username);
 
     if ($uidExists === false){
@@ -95,13 +97,14 @@ function loginUser($conn, $username, $pwd){
         exit();
     }
 
-    $pwdUser = $uidExists["usersPwd"];
+    $pwdHashed = $uidExists["usersPwd"];
+    $pwdCheck = password_verify($password, $pwdHashed);
 
-    if ($pwd !== $pwdUser){
+    if ($pwdCheck === false){
         header("location: ../login.php?error=wronglogin");
         exit();
     }
-    else if ($pwd == $pwdUser){
+    else if ($pwdCheck === true){
         session_start();
         $_SESSION["userid"] = $uidExists["usersId"];
         $_SESSION["useruid"] = $uidExists["usersUid"];
@@ -123,8 +126,9 @@ function emptyInputChangePassword($oldPwd, $newPwd, $newPwdRpt){
 function wrongOldPassword($conn, $oldPwd, $username){
     $uidExists = uidExists($conn, $username, $username);
     $pwdUser = $uidExists["usersPwd"];
+    $pwdCheck = password_verify($password, $pwdUser);
 
-    if ($oldPwd !== $pwdUser){
+    if ($pwdCheck){
         $result = true;
     }
     else {
@@ -154,7 +158,8 @@ function pwdMatchChange($newPwd, $newPwdRpt){
 }
 
 function changePassword($conn, $newPwd, $userID){
-    $query = "UPDATE users SET usersPwd = '$newPwd' WHERE usersId = '$userID';";
+    $hashedPwd = password_hash($newPwd, PASSWORD_DEFAULT);
+    $query = "UPDATE users SET usersPwd = '$hashedPwd' WHERE usersId = '$userID';";
     $result = mysqli_query($conn,$query);
     header("location: ../change_password.php?error=none");
     exit();
@@ -172,16 +177,17 @@ function emptyInputDelete($password, $password_repeat){
 
 
 function wrongPassword($conn, $password, $username){
-    $uidExists = uidExists($conn, $username, $username);
-    $pwdUser = $uidExists["usersPwd"];
+  $uidExists = uidExists($conn, $username, $username);
+  $pwdUser = $uidExists["usersPwd"];
+  $pwdCheck = password_verify($password, $pwdUser);
 
-    if ($password !== $pwdUser){
-        $result = true;
-    }
-    else {
-        $result = false;
-    }
-    return $result;
+  if (!$pwdCheck){
+      $result = true;
+  }
+  else {
+      $result = false;
+  }
+  return $result;
 }
 
 function pwdMatchDelete($password, $password_repeat){
@@ -204,6 +210,6 @@ function deleteUser($conn, $userID, $currentID){
         header("location: ../login.php?error=none");
         exit();
     }
-    header("location: ../users.php?error=none");
+    header("location: ../delete_acc.php?error=none");
     exit();
 }

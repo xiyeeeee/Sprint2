@@ -43,7 +43,7 @@
 			foreach ($trainings_by_category['Segmentation'] as $training){
 					echo "<section class='training'>";
 					echo "<div class='training-item'>";
-					$result = glob ('img/' . $training["tName"] . '.*');
+					$result = glob ('img/trainingImg/' . $training["tName"] . '.*');
 					echo '<img class="image" src="'. $result[0] .'" alt="' . $training["tName"] . '">';
 					echo "<div class='training-info'>";
 					echo "<h3>" . $training["tName"] . "</h3>";

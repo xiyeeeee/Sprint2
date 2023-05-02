@@ -32,6 +32,8 @@
 
     function createTableTraining($conn){
         $sql = "CREATE TABLE IF NOT EXISTS requests (
+            rID INT(16) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+            Time DATETIME NOT NULL,
             name VARCHAR(30) NOT NULL,
             training VARCHAR(128) NOT NULL,
             tlocation VARCHAR(256) NOT NULL,
@@ -71,8 +73,9 @@
       }
 
       if ($trainingErr == ''){
+        $current_time = date('Y-m-d H:i:s');
         $status = "pending";
-        $sql = "INSERT INTO requests (name, training, tlocation, remark, status) VALUES ('$name', '$training', '$location', '$remark', '$status')";
+        $sql = "INSERT INTO requests (name, Time, training, tlocation, remark, status) VALUES ('$name', '$current_time', '$training', '$location', '$remark', '$status')";
 
         if ($conn->query($sql) === TRUE) {
             echo "Your request is waiting for approve";
@@ -121,7 +124,7 @@
      $conn-> close();
       }
 
-            
+
       $name = "";
       $servername = "localhost";
       $username = "root";
@@ -144,7 +147,7 @@
           }
       }
       $conn->close();
-    
+
 
     ?>
     <br>
@@ -323,7 +326,7 @@
 
      ?>
       <input type="text" id="tLocation" name="location" value="<?php echo $train_loc ?>" readonly>
-  
+
     <br><br>
 
 	<label for="remark">Remark:</label>

@@ -34,7 +34,7 @@
             $tPrice = $row['tPrice'];
             $tDescription = $row['tDescription'];
 
-            $img = "img/". $tName . ".png";
+            $img = "img/trainingImg/". $tName . ".png";
         }
 
     ?>

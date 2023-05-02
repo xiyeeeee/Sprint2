@@ -26,16 +26,16 @@
 	<?php
 	require_once "includes/connect.php";
 
-
+  $output ="";
 	if(isset($_POST["submit"])) {
 		$oldtName = $_POST["otName"];
-        $target_dir = "img/";
+        $target_dir = "img/trainingImg/";
 		$target_file = $target_dir . $_POST["tName"]. ".png";
         $old_target_file = $target_dir . $oldtName . ".png";
         $uploadOk = 1;
         $imageFileType = strtolower(pathinfo($old_target_file,PATHINFO_EXTENSION));
 
-        if(isset($_FILES["fileToUpload"]["tmp_name"])){
+        if($_FILES["fileToUpload"]["error"] != '4' || $_FILES["fileToUpload"]["error"] != '0' && $_FILES["fileToUpload"]["size"] != '0'){
         $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
         if($check !== false) {
             $uploadOk = 1;
@@ -44,23 +44,23 @@
         }
 
         if (!file_exists($old_target_file)) {
-            echo "Sorry, training does not exists.";
+            $output = $output . "Sorry, training does not exists.";
             $uploadOk = 0;
         }
 
 		if(file_exists($target_file)){
-			echo "Sorry, training already exists.";
+			$output = $output . "Sorry, training already exists.";
 			$uploadOk = 0;
 		}
 
-        if ((!isset($_POST["tName"]) && !isset($_POST["tCategory"]) && !isset($_POST["tLocation"]) && !isset($_POST["tDescription"]) && !isset($_POST["tPrice"]))){
-            echo "Please fill in all fields";
+        if (!isset($_POST["tName"]) && !isset($_POST["tCategory"]) && !isset($_POST["tLocation"]) && !isset($_POST["tDescription"]) && !isset($_POST["tPrice"])){
+            $output = $output . "Please fill in all fields";
             $uploadOk = 0;
         }
 		}
 
 		if ($uploadOk == 0) {
-            echo "Sorry, your file was not uploaded.";
+            $output = $output . "Sorry, your file was not uploaded.";
           // if everything is ok, try to upload file
           } else {
             $tName = $_POST["tName"];
@@ -70,22 +70,21 @@
             $tPrice = $_POST["tPrice"];
 
             if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-			  unlink($old_target_file);
-              echo "The file ". htmlspecialchars( basename( $_FILES["fileToUpload"]["name"])). " has been uploaded.";
+			        unlink($old_target_file);
+              $output = $output . "The file ". htmlspecialchars( basename( $_FILES["fileToUpload"]["name"])). " has been uploaded.";
               $sql = "UPDATE trainings SET tName = '$tName', tCategory = '$tCategory', tLocation ='$tLocation', tDescription='$tDescription', tPrice = '$tPrice' WHERE tName = '$oldtName'";
 
 
             if ( mysqli_query($conn, $sql)){
-                echo "Records updated successfully.";
+              $output = $output . "Records updated successfully.";
             }
             } else {
-              echo "Sorry, there was an error adding the training.";
+              $output = $output . "Sorry, there was an error adding the training.";
             }
 		}
 	}else{
 		$oldtName = $_GET["sName"];
 	}
-
 	?>
    <div class= "edittraining-form">
 	<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" enctype="multipart/form-data">
@@ -114,8 +113,9 @@
         <input type="text" name="tDescription" id="tDescription"/></p>
 
         <p><input type="submit" value="Edit" name="submit"/></p>
-		<p><input type="hidden" value=<?php echo "$oldtName"?> name="otName"/></p>
+		<p><input type="hidden" value='<?php echo "$oldtName"?>' name="otName"/></p>
     </form>
+    <p><?php echo $output?></p>
     </div>
 
     <footer>
