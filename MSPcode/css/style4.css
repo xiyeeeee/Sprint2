@@ -1,0 +1,88 @@
+
+      #landingtxt
+      {
+        color: black;
+      }
+
+      /*payment_successful*/
+      .select-buttons {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        margin-top: 30px;
+      }
+      
+      .abutton {
+        background-color: #0d2945;
+        color: #FFFFFF;
+        padding: 5px 15px; /* increase padding to make buttons wider */
+        border-radius: 5px;
+        text-decoration: none;
+        font-size: 18px;
+        margin: 0 15px; /* remove left and right margins, add margin between buttons */
+      }
+      
+      .abutton:hover {
+        background-color: #F5F5F5;
+        color: #7f0909;
+        border: 2px solid #7f0909;
+        transition: all 0.3s ease-in-out;
+      }
+      
+
+      #spaymentbg{
+        background: rgba(0, 0, 0, 0.5)url(../img/add_training.jpg) no-repeat center center fixed;
+        background-size: cover;
+      }
+
+      /*payment_failed*/
+
+      #fpaymentbg{
+        background: rgba(0, 0, 0, 0.5)url(../img/add_training.jpg) no-repeat center center fixed;
+        background-size: cover;
+      }
+
+      .fselect-buttons {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 30px;
+      }
+  
+      .fbutton {
+        background-color: #0d2945;
+        color: #FFFFFF;
+        padding: 5px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-size: 18px;
+        margin: 0 25px;
+      }
+  
+      .fbutton:hover {
+        background-color: #F5F5F5;
+        color: #7f0909;
+        border: 2px solid #7f0909;
+        transition: all 0.3s ease-in-out;
+      }
+
+      /*searchTraining*/
+      #searchTrainingBox {
+  
+        border: 10px solid #092a3e; 
+        padding: 20px;
+        background-color: #F2F3F4; 
+        width: 50%;
+        margin-left: 350px;
+        margin-top: 50px;
+        margin-bottom: 200px;
+      }
+
+      /*searchTrainingProcess*/
+      .sth1 {
+        margin-top: 0px;
+        font-size: 36px;
+        color: #000;
+      }
