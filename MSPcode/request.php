@@ -10,7 +10,7 @@
 <?php
     $servername = "localhost";
     $username = "root";
-    $password = "031101abc";
+    $password = "";
     $dbName = "expert_db";
     $conn = mysqli_connect($servername, $username, $password);
     if (!$conn) {
@@ -47,7 +47,7 @@
 
     $servername = "localhost";
     $username = "root";
-    $password = "031101abc";
+    $password = "";
     $dbName = "expert_db";
 
     $conn = new mysqli($servername, $username, $password, $dbName);
@@ -104,7 +104,7 @@
     <?php
     $servername = "localhost";
     $username = "root";
-    $password = "031101abc";
+    $password = "";
     $dbname = "expert_db";
 
     if (isset($_SESSION['useruid'])) {
@@ -125,7 +125,7 @@
       $name = "";
       $servername = "localhost";
       $username = "root";
-      $password = "031101abc";
+      $password = "";
       $dbname = "expert_db";
       $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -169,7 +169,7 @@
       <?php
             $servername = "localhost";
             $username = "root";
-            $password = "031101abc";
+            $password = "";
             $dbname = "expert_db";
 
             // Create connection
@@ -205,7 +205,7 @@
       <?php
             $servername = "localhost";
             $username = "root";
-            $password = "031101abc";
+            $password = "";
             $dbname = "expert_db";
 
             // Create connection
@@ -241,7 +241,7 @@
       <?php
             $servername = "localhost";
             $username = "root";
-            $password = "031101abc";
+            $password = "";
             $dbname = "expert_db";
 
             // Create connection
@@ -277,7 +277,7 @@
       <?php
             $servername = "localhost";
             $username = "root";
-            $password = "031101abc";
+            $password = "";
             $dbname = "expert_db";
 
             // Create connection

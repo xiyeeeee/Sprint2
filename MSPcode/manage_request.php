@@ -25,7 +25,7 @@
   <?php
   $servername = "localhost";
   $username = "root";
-  $password = "031101abc";
+  $password = "";
   $dbname = "expert_db";
 
   // Create connection

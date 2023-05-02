@@ -45,7 +45,7 @@ function createTableEnquiry($conn){
 
 $serverName = "localhost";
 $dBUsername = "root";
-$dBPassword = "031101abc";
+$dBPassword = "";
 $dBName = "expert_db";
 
 $conn = mysqli_connect($serverName, $dBUsername, $dBPassword);
