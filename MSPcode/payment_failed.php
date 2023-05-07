@@ -40,7 +40,7 @@ $pageTitle = "Payment Failed";
 		</div>
 	</div>
 
-  <footer>
+  <!--<footer>
     <div class="footer-container">
       <div class="footer-column">
         <ul class="footer-nav">
@@ -64,7 +64,10 @@ $pageTitle = "Payment Failed";
         </ul>
       </div>
     </div>
-  </footer>
+  </footer>-->
+  <?php
+  include('footer.php');
+  ?>
     
 </body>
 </html>

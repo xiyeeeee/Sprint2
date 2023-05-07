@@ -38,7 +38,7 @@ $pageTitle = "Payment Successful";
 		</div>
 	</div>
 
-  <footer>
+  <!--<footer>
     <div class="footer-container">
       <div class="footer-column">
         <ul class="footer-nav">
@@ -62,7 +62,10 @@ $pageTitle = "Payment Successful";
         </ul>
       </div>
     </div>
-  </footer>
-    
+  </footer>-->
+
+    <?php
+  include('footer.php');
+  ?>
 </body>
 </html>

@@ -64,7 +64,7 @@
     
 
 
-<footer>
+<!--<footer>
     <div class="footer-container">
       <div class="footer-column">
         <ul class="footer-nav">
@@ -88,7 +88,10 @@
         </ul>
       </div>
     </div>
-  </footer>
+  </footer>-->
+  <?php
+  include('footer.php');
+  ?>
 
       <script src="script/buttontop.js"></script>  
 </body>

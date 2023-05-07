@@ -147,7 +147,7 @@ $pageTitle = "Admin Dashboard";
       </div>
       </div>
 
-      <footer>
+      <!--<footer>
     <div class="footer-container">
       <div class="footer-column">
         <ul class="footer-nav">
@@ -171,9 +171,13 @@ $pageTitle = "Admin Dashboard";
         </ul>
       </div>
     </div>
-  </footer>
+  </footer>-->
+  <?php
+  include('footer.php');
+  ?>
   </div>
   </div>
+ 
 <script src="script/buttontop.js"></script>
 </body>
 </html>

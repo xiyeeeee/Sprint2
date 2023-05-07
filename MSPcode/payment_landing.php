@@ -41,7 +41,7 @@ $pageTitle = "Dashboard";
 	</div>
 
 
-    <footer>
+    <!--<footer>
     <div class="footer-container">
       <div class="footer-column">
         <ul class="footer-nav">
@@ -65,7 +65,10 @@ $pageTitle = "Dashboard";
         </ul>
       </div>
     </div>
-  </footer>
+  </footer>-->
+  <?php
+  include('footer.php');
+  ?>
   </body>
   <script type="text/javascript">
     const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
