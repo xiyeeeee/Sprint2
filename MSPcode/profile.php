@@ -24,7 +24,18 @@
     <?php include 'navigation.php';?>
   </div>
   </div>
-
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
     <br>
     <br>
     <br>
@@ -32,40 +43,96 @@
     <br>
     <br>
 </article>
-<section class="profile-container">
-        <?php
-            // Check if the user is logged in
-            if (isset($_SESSION['useruid'])) {
+<?php
+if (isset($_SESSION['useruid'])) {
+    require_once 'includes/db.inc.php';
+    require_once 'includes/functions.inc.php';
 
-              require_once 'includes/db.inc.php';
-              require_once 'includes/functions.inc.php';
+    $uidExists = uidExists($conn, $_SESSION['useruid'], $_SESSION['useruid']);
 
-              $uidExists = uidExists($conn, $_SESSION['useruid'], $_SESSION['useruid']);
+    // Handle the profile picture upload
+    if(isset($_FILES['file']) && $_FILES['file']['error'] === UPLOAD_ERR_OK) {
+      $file = $_FILES['file'];
 
-              // Display the details of the logged-in user
-              echo "<h1>User Details</h1>";
-              echo "<p>Name: " . $uidExists['usersName'] . "</p>";
-              echo "<p>Email: " . $uidExists['usersEmail'] . "</p>";
-              echo "<p>Username: " . $uidExists['usersUid'] . "</p>";
-              echo "<p>Registration Date & Time: " . $uidExists['regDate'] . "</p>";
+      // Specify the target directory where the profile pictures will be stored
+      $targetDirectory = 'img/profile_pictures/';
 
-              $sql = "SELECT usersId, usersName, usersEmail, usersUid from users";
-              $result = $conn-> query($sql);
+      // Generate a unique filename for the uploaded picture
+      $fileName = uniqid() . '_' . $file['name'];
 
+      // Specify the path where the picture will be stored
+      $targetPath = $targetDirectory . $fileName;
 
+      // Move the uploaded file to the target directory
+      if(move_uploaded_file($file['tmp_name'], $targetPath)) {
+          // Update the user's profile picture in the database
+          $userId = 1; // Replace with the actual user ID
+          $profilePicturePath = $targetPath;
 
-              $conn-> close();
-              // add more details as required
-            } else {
-              // If the user is not logged in, redirect to the login page
-              header("Location: login.php");
-              exit();
-            }
-        ?>
-    </section>
+          // Perform the database update
+          $sql = "UPDATE users SET profile_picture = '$profilePicturePath' WHERE id = $userId";
+          // Execute the SQL query to update the profile picture
+          // ...
+          // ...
+
+          // Provide feedback to the user
+          echo "Profile picture uploaded successfully!";
+      } else {
+          echo "Failed to move the uploaded file.";
+      }
+    }
+    // Continue with the rest of the code for the logged-in user
+    echo '<section class="profile-container">';
+    // Display the details of the logged-in user
+    echo "<h1>User Details</h1>";
+    echo "<p>Name: " . $uidExists['usersName'] . "</p>";
+    echo "<p>Email: " . $uidExists['usersEmail'] . "</p>";
+    echo "<p>Username: " . $uidExists['usersUid'] . "</p>";
+    echo "<p>Registration Date & Time: " . $uidExists['regDate'] . "</p>";
+    echo '</section>';
+    $sql = "SELECT usersId, usersName, usersEmail, usersUid from users";
+    $result = $conn-> query($sql);
+
+    $conn-> close();
+  } else {
+    // If the user is not logged in, redirect to the login page
+    header("Location: login.php");
+    exit();
+  }
+
+?>
+<div class="profile-pic-div">
+  <img src="image.jpg" id="photo">
+  <input type="file" id="file" onchange="uploadProfilePicture()">
+  <label for="file" id="uploadBtn">Choose Photo</label>
+</div>
+
+<script>
+  function uploadProfilePicture() {
+    var fileInput = document.getElementById('file');
+    var file = fileInput.files[0];
+
+    var formData = new FormData();
+    formData.append('file', file);
+
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', 'upload.php', true); // Replace 'upload.php' with the PHP file handling the upload
+    xhr.onload = function() {
+      if (xhr.status === 200) {
+        // Update the profile picture on the page
+        var photo = document.getElementById('photo');
+        photo.src = 'path_to_uploaded_file'; // Replace 'path_to_uploaded_file' with the actual path to the uploaded file
+
+        console.log(xhr.responseText);
+      }
+    };
+    xhr.send(formData);
+  }
+</script>
 <br>
 <br>
 <script src="https://kit.fontawesome.com/2076012a21.js" crossorigin="anonymous"></script>
 <script src="script/buttontop.js"></script>
+<script src="script/app.js"></script>
 </body>
 </html>
