@@ -49,7 +49,7 @@ if (isset($_SESSION['useruid'])) {
     require_once 'includes/functions.inc.php';
 
     $uidExists = uidExists($conn, $_SESSION['useruid'], $_SESSION['useruid']);
-
+    $userId = $uidExists["usersId"];
     // Handle the profile picture upload
     if(isset($_FILES['file']) && $_FILES['file']['error'] === UPLOAD_ERR_OK) {
       $file = $_FILES['file'];
@@ -58,24 +58,13 @@ if (isset($_SESSION['useruid'])) {
       $targetDirectory = 'img/profile_pictures/';
 
       // Generate a unique filename for the uploaded picture
-      $fileName = uniqid() . '_' . $file['name'];
-
-      // Specify the path where the picture will be stored
-      $targetPath = $targetDirectory . $fileName;
-
+      $target_file = $targetDirectory . $uidExists["usersId"] . ".png";
+      if(file_exists($target_file)){
+        unlink($target_file);
+      }
       // Move the uploaded file to the target directory
-      if(move_uploaded_file($file['tmp_name'], $targetPath)) {
-          // Update the user's profile picture in the database
-          $userId = 1; // Replace with the actual user ID
-          $profilePicturePath = $targetPath;
-
-          // Perform the database update
-          $sql = "UPDATE users SET profile_picture = '$profilePicturePath' WHERE id = $userId";
-          // Execute the SQL query to update the profile picture
-          // ...
-          // ...
-
-          // Provide feedback to the user
+      if(move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)) {
+          
           echo "Profile picture uploaded successfully!";
       } else {
           echo "Failed to move the uploaded file.";
@@ -99,10 +88,13 @@ if (isset($_SESSION['useruid'])) {
     header("Location: login.php");
     exit();
   }
-
+  $img = "img/profile_pictures/". $userId. ".png";
+  if(!file_exists($img)){
+    $img = "img/profilepic.jpg";
+  }
 ?>
 <div class="profile-pic-div">
-  <img src="image.jpg" id="photo">
+  <img <?php echo "src='$img'"?> id="photo">
   <input type="file" id="file" onchange="uploadProfilePicture()">
   <label for="file" id="uploadBtn">Choose Photo</label>
 </div>
@@ -116,12 +108,9 @@ if (isset($_SESSION['useruid'])) {
     formData.append('file', file);
 
     var xhr = new XMLHttpRequest();
-    xhr.open('POST', 'upload.php', true); // Replace 'upload.php' with the PHP file handling the upload
+    xhr.open('POST', 'profile.php', true); // Replace 'upload.php' with the PHP file handling the upload
     xhr.onload = function() {
       if (xhr.status === 200) {
-        // Update the profile picture on the page
-        var photo = document.getElementById('photo');
-        photo.src = 'path_to_uploaded_file'; // Replace 'path_to_uploaded_file' with the actual path to the uploaded file
 
         console.log(xhr.responseText);
       }
