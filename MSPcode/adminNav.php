@@ -12,7 +12,7 @@ echo '</div>';
 echo '</li>';
 echo '<li><a href="manage_request.php">Request Management<i class="fas fa-bell"></i></a></li>';
 echo '<li><a href="#">Booking Management<i class="fas fa-calendar"></i></a></li>';
-echo '<li><a href="#">Chat<i class="fas fa-comments"></i></a></li>';
+echo '<li><a href="adminchat.php">Chat<i class="fas fa-comments"></i></a></li>';
 echo '<li class="navbar-item"><a href="login.php">Logout <i class="fas fa-user-circle"></i></a></li>';
 echo '</ul>';
 echo '</nav>';

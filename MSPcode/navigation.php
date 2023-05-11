@@ -14,7 +14,7 @@ echo '</div>';
 echo '</li>';
 echo '<li><a href="request.php">Request <i class="fas fa-bell"></i></a></li>';
 echo '<li><a href="#">Booking <i class="fas fa-cart-plus"></i></a></li>';
-echo '<li><a href="#">Chat<i class="fas fa-comments"></i></a></li>';
+echo '<li><a href="clientchat.php">Chat<i class="fas fa-comments"></i></a></li>';
 echo '<li class="dropdown">';
 echo '<a href="profile.php">Profile <i class="fas fa-user"></i></a>';
 echo '<div class="dropdown-content">';
