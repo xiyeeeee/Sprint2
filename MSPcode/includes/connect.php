@@ -21,6 +21,7 @@
     }
 
     createTableTraining($conn);
+    createTableBooking($conn);
 
     function createTableTraining($conn){
         $sql = "CREATE TABLE IF NOT EXISTS trainings (
@@ -30,6 +31,22 @@
             tLocation VARCHAR(128) NOT NULL,
             tPrice VARCHAR(128) NOT NULL,
             tDescription VARCHAR(128) NOT NULL
+        )";
+
+        mysqli_query($conn, $sql);
+    }
+
+    function createTableBooking($conn){
+        $sql = "CREATE TABLE IF NOT EXISTS booking (
+            bID INT(11) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+            tName VARCHAR(128) NOT NULL,
+            tCategory VARCHAR(128) NOT NULL,
+            tLocation VARCHAR(128) NOT NULL,
+            tPrice VARCHAR(128) NOT NULL,
+            bItenerary VARCHAR(128) NOT NULL,
+            paymentStatus Boolean NOT NULL,
+            paymentDue DATETIME NOT NULL,
+            tDate DATETIME NOT NULL
         )";
 
         mysqli_query($conn, $sql);
