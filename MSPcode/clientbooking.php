@@ -30,36 +30,45 @@ if (isset($_SESSION['useruid'])) {
     require_once 'includes/connect.php';
 
     $sql = "SELECT bID, usersName, tName, tCategory, tLocation, tPrice, bItenerary, paymentStatus, paymentDue, tDate from booking WHERE usersName = $uidExists";
-	$result = $conn-> query($sql);
+	  $result = $conn-> query($sql);
 
     $uidExists = uidExists($conn, $_SESSION['useruid'], $_SESSION['useruid']);
     $userId = $uidExists["usersId"];
 
-    // Continue with the rest of the code for the logged-in user
-    echo '<section class="profile-container">';
-    // Display the details of the logged-in user
-    echo "<h1>User Details</h1>";
-    echo "<p>Training: " . $uidExists['tName'] . "</p>";
-    echo "<p>Category: " . $uidExists['tCategory'] . "</p>";
-    echo "<p>Location: " . $uidExists['tLocation'] . "</p>";
-    echo "<p>Price: " . $uidExists['tPrice'] . "</p>";
-    echo "<p>Itenerary: " . $uidExists['bItenerary'] . "</p>";
-    echo "<p>Payment Status: " . $uidExists['paymentStatus'] . "</p>";
-    echo "<p>Training Date: " . $uidExists['tDate'] . "</p>";
-    echo "<p>Payment Deadline: " . $uidExists['paymentDue'] . "</p>";
-    echo '</section>';
-    $sql = "SELECT usersId, usersName, usersEmail, usersUid from users";
-    $result = $conn-> query($sql);
-
-    $conn-> close();
-  } else {
-    // If the user is not logged in, redirect to the login page
-    header("Location: login.php");
-    exit();
-  }
-  $img = "img/profile_pictures/". $userId. ".png";
-  if(!file_exists($img)){
-    $img = "img/profilepic.jpg";
+    if (mysqli_num_rows($result) > 0) {
+      echo "<table>";
+      echo "<tr>";
+      echo "<th>Booking ID</th>";
+      echo "<th>Training</th>";
+      echo "<th>Category</th>";
+      echo "<th>Location</th>";
+      echo "<th>Status</th>";
+      echo "<th>Date</th>";
+      echo "<th>Deadline</th>";
+      echo "<th>Action</th>";
+      echo "</tr>";
+      while ($row = mysqli_fetch_assoc($result)) {
+        echo "<tr>";
+        echo "<td>" . $row["bID"] . "</td>";
+        echo "<td>" . $row["tName"] . "</td>";
+        echo "<td>" . $row["tCategory"] . "</td>";
+        echo "<td>" . $row["tLocation"] . "</td>";
+        echo "<td>" . $row["paymentStatus"] . "</td>";
+        echo "<td>" . $row["tDate"] . "</td>";
+        echo "<td>" . $row["paymentDue"] . "</td>";
+        echo "<td>";
+        echo "<form method='post' action=''>";
+        echo "<input type='hidden' name='bID' value='" . $row["bID"] . "'>";
+        echo "<button type='submit' name='pay'>Pay</button>";
+        echo "<button type='submit' name='delete'>Delete</button>";
+        echo "</form>";
+        echo "</td>";
+        echo "</tr>";
+      }
+      echo "</table>";
+    } else {
+      echo "No Bookings Made Yet";
+    }
   }
 ?>
 <br>
