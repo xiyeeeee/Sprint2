@@ -39,6 +39,7 @@
     function createTableBooking($conn){
         $sql = "CREATE TABLE IF NOT EXISTS booking (
             bID INT(11) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+            userID VARCHAR(128) NOT NULL,
             tName VARCHAR(128) NOT NULL,
             tCategory VARCHAR(128) NOT NULL,
             tLocation VARCHAR(128) NOT NULL,
