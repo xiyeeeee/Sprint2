@@ -23,17 +23,23 @@
 <?php include 'navigation.php';?>
 </div>
 </div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 <?php
 if (isset($_SESSION['useruid'])) {
     require_once 'includes/db.inc.php';
     require_once 'includes/functions.inc.php';
     require_once 'includes/connect.php';
 
-    $sql = "SELECT bID, usersName, tName, tCategory, tLocation, tPrice, bItenerary, paymentStatus, paymentDue, tDate from booking WHERE usersName = $uidExists";
-	  $result = $conn-> query($sql);
-
     $uidExists = uidExists($conn, $_SESSION['useruid'], $_SESSION['useruid']);
     $userId = $uidExists["usersId"];
+
+    $sql = "SELECT bID, userID, tName, tCategory, tLocation, tPrice, bItenerary, paymentStatus, paymentDue, tDate from booking WHERE userId = $userId";
+	  $result = $conn-> query($sql);
 
     if (mysqli_num_rows($result) > 0) {
       echo "<table>";
@@ -48,7 +54,15 @@ if (isset($_SESSION['useruid'])) {
       echo "<th>Action</th>";
       echo "</tr>";
       while ($row = mysqli_fetch_assoc($result)) {
-        echo "<tr>";
+        $paymentDue = $row["paymentDue"];
+        $dueDate = DateTime::createFromFormat('Y-m-d H:i:s', $paymentDue); // Assuming the format of the paymentDue field is 'Y-m-d H:i:s'
+
+        if ($dueDate && $dueDate < new DateTime()) {
+            echo "<tr class='disabled'>";
+        } else {
+            echo "<tr>";
+        }
+        
         echo "<td>" . $row["bID"] . "</td>";
         echo "<td>" . $row["tName"] . "</td>";
         echo "<td>" . $row["tCategory"] . "</td>";
@@ -59,7 +73,7 @@ if (isset($_SESSION['useruid'])) {
         echo "<td>";
         echo "<form method='post' action=''>";
         echo "<input type='hidden' name='bID' value='" . $row["bID"] . "'>";
-        echo "<button type='submit' name='pay'>Pay</button>";
+        echo "<button type='submit' name='pay' " . ($dueDate && $dueDate < new DateTime() ? "disabled" : "") . ">Pay</button>";
         echo "<button type='submit' name='delete'>Delete</button>";
         echo "</form>";
         echo "</td>";
