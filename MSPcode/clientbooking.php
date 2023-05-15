@@ -67,7 +67,11 @@ if (isset($_SESSION['useruid'])) {
         echo "<td>" . $row["tName"] . "</td>";
         echo "<td>" . $row["tCategory"] . "</td>";
         echo "<td>" . $row["tLocation"] . "</td>";
-        echo "<td>" . $row["paymentStatus"] . "</td>";
+        if ($row["paymentStatus"]){
+          echo "<td>Paid</td>";
+        } else {
+          echo "<td>Unpaid</td>";
+        }
         echo "<td>" . $row["tDate"] . "</td>";
         echo "<td>" . $row["paymentDue"] . "</td>";
         echo "<td>";
