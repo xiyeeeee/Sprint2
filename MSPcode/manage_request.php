@@ -42,7 +42,7 @@
     mysqli_query($conn, $sql);
 
     $tName = $_POST["training"];
-    $sql2 = "SELECT * FROM trainings WHERE tName = '$tName";
+    $sql2 = "SELECT * FROM trainings WHERE tName = '$tName'";
     $result2 = mysqli_query($conn, $sql2);
     $rowT = mysqli_fetch_assoc($result2);
 
@@ -98,6 +98,7 @@
       }
       echo "<input type='hidden' name='training' value='" . $row["training"] . "'>";
       echo "<input type='hidden' name='userID' value='" . $row["userID"] . "'>";
+      echo "<input type='hidden' name='Time' value='" . $row["Time"] . "'>";
       echo "</form>";
       echo "</td>";
       echo "</tr>";
