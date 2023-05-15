@@ -44,7 +44,7 @@
     $tName = $_POST["training"];
     $sql2 = "SELECT * FROM trainings WHERE tName = '$tName";
     $result2 = mysqli_query($conn, $sql2);
-    $rowT = mysqli_fetch_assoc($result);
+    $rowT = mysqli_fetch_assoc($result2);
 
     $userID = $_POST['userID'];
     $tCategory = $rowT['tCategory'];
@@ -65,7 +65,7 @@
     mysqli_query($conn, $sql);
   }
 
-  $sql = "SELECT rID, Time, name, training, tLocation, remark, status FROM requests";
+  $sql = "SELECT rID, Time, name, userID, training, tLocation, remark, status FROM requests";
   $result = mysqli_query($conn, $sql);
 
   if (mysqli_num_rows($result) > 0) {

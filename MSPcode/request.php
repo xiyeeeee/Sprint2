@@ -76,7 +76,7 @@
       if ($trainingErr == ''){
         $current_time = date('Y-m-d H:i:s');
         $status = "pending";
-        $userID = $_POST["$userID"];
+        $userID = $_POST['userID'];
         $sql = "INSERT INTO requests (name, userID, Time, training, tlocation, remark, status) VALUES ('$name', '$userID', '$current_time', '$training', '$location', '$remark', '$status')";
 
         if ($conn->query($sql) === TRUE) {
@@ -102,7 +102,9 @@
 <br>
 <br>
 <br>
-
+<br>
+<br><br>
+    <br>
   <form class="container" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
     <h2 class="center">Client Request Form</h2>
     <label for="name">Name:</label>
@@ -120,11 +122,11 @@
     $uidExists = uidExists($conn, $_SESSION['useruid'], $_SESSION['useruid']);
     // Display the details of the logged-in user
      echo '<input type="text" id="name" name="name" value="' . $uidExists['usersUid'] . '" readonly>';
-     echo '<input type="hidden" id="userID" name="userID" value="'. $uidExists['usersId'].'"/>';
-     $sql = "SELECT usersName, usersUid from users";
+     echo '<input type="hidden" id="userID" name="userID" value="'. $_SESSION['userid'].'"/>';
+     $sql = "SELECT usersId, usersName, usersUid from users";
      $result = $conn-> query($sql);
      $conn-> close();
-      }
+    }
 
 
       $name = "";
