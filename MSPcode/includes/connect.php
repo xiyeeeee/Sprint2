@@ -44,7 +44,7 @@
             tCategory VARCHAR(128) NOT NULL,
             tLocation VARCHAR(128) NOT NULL,
             tPrice VARCHAR(128) NOT NULL,
-            bItenerary VARCHAR(128) NOT NULL,
+            bItinerary VARCHAR(128) NOT NULL,
             paymentStatus Boolean NOT NULL,
             paymentDue DATETIME NOT NULL,
             tDate DATETIME NOT NULL

@@ -40,6 +40,25 @@
 		$rID = $_POST['rID'];
     $sql = "UPDATE requests SET status='accepted' WHERE rID = '$rID'";
     mysqli_query($conn, $sql);
+
+    $tName = $_POST["training"];
+    $sql2 = "SELECT * FROM trainings WHERE tName = '$tName";
+    $result2 = mysqli_query($conn, $sql2);
+    $rowT = mysqli_fetch_assoc($result);
+
+    $userId = $_POST["name"]
+    $tCategory = $rowT['tCategory'];
+    $tLocation = $rowT['tLocation'];
+    $tPrice = $rowT['tPrice'];
+    $bItinerary = $rowT['tDescription'];
+    $paymentStatus = false;
+    $tDate = $_POST["Time"]
+    $paymentDue = date('M d, Y', strtotime('-7 days', $tDate))
+
+    $sqlB = "INSERT IGNORE INTO booking (userID, tName, tCategory, tLocation, tPrice, bItinerary, paymentStatus, paymentDue, tDate)
+              VALUES ("$userID", "$tName", "$tCategory", "$tLocation", "$tPrice", "$bItinerary", "$paymentStatus", "$paymentDue", "$tDate")";
+    mysqli_query($conn, $sqlB);
+    
   } elseif (isset($_POST['deny'])) {
 		$rID = $_POST['rID'];
     $sql = "UPDATE requests SET status='denied' WHERE rID='$rID'";
@@ -71,8 +90,12 @@
       echo "<td>";
       echo "<form method='post' action=''>";
       echo "<input type='hidden' name='rID' value='" . $row["rID"] . "'>";
-      echo "<button type='submit' name='accept'>Accept</button>";
-      echo "<button type='submit' name='deny'>Deny</button>";
+      if($row["status"] != "pending"){
+        echo "<p>". $row["status"] . "</p>"
+      }else{
+        echo "<button type='submit' name='accept'>Accept</button>";
+        echo "<button type='submit' name='deny'>Deny</button>";
+      }
       echo "</form>";
       echo "</td>";
       echo "</tr>";

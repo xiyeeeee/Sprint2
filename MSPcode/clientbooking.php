@@ -38,7 +38,7 @@ if (isset($_SESSION['useruid'])) {
     $uidExists = uidExists($conn, $_SESSION['useruid'], $_SESSION['useruid']);
     $userId = $uidExists["usersId"];
 
-    $sql = "SELECT bID, userID, tName, tCategory, tLocation, tPrice, bItenerary, paymentStatus, paymentDue, tDate from booking WHERE userId = $userId";
+    $sql = "SELECT bID, userID, tName, tCategory, tLocation, tPrice, bItinerary, paymentStatus, paymentDue, tDate from booking WHERE userId = $userId";
 	  $result = $conn-> query($sql);
 
     if (mysqli_num_rows($result) > 0) {
