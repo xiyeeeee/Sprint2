@@ -35,6 +35,7 @@
             rID INT(16) UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
             Time DATETIME NOT NULL,
             name VARCHAR(30) NOT NULL,
+            userID VARCHAR(30) NOT NULL,
             training VARCHAR(128) NOT NULL,
             tlocation VARCHAR(256) NOT NULL,
             remark TEXT NOT NULL,
@@ -73,9 +74,11 @@
       }
 
       if ($trainingErr == ''){
+        $uidExists = uidExists($conn, $_SESSION['useruid'], $_SESSION['useruid']);
         $current_time = date('Y-m-d H:i:s');
         $status = "pending";
-        $sql = "INSERT INTO requests (name, Time, training, tlocation, remark, status) VALUES ('$name', '$current_time', '$training', '$location', '$remark', '$status')";
+        $userID = $uidExists['usersUid'];
+        $sql = "INSERT INTO requests (name, userID, Time, training, tlocation, remark, status) VALUES ('$name', '$userID', '$current_time', '$training', '$location', '$remark', '$status')";
 
         if ($conn->query($sql) === TRUE) {
             echo "Your request is waiting for approve";

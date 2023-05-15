@@ -46,7 +46,7 @@
     $result2 = mysqli_query($conn, $sql2);
     $rowT = mysqli_fetch_assoc($result);
 
-    $userId = $_POST["name"]
+    $userId = $_POST['userID'] 
     $tCategory = $rowT['tCategory'];
     $tLocation = $rowT['tLocation'];
     $tPrice = $rowT['tPrice'];
@@ -96,6 +96,8 @@
         echo "<button type='submit' name='accept'>Accept</button>";
         echo "<button type='submit' name='deny'>Deny</button>";
       }
+      echo "<input type='hidden' name='training' value='" . $row["training"] . "'>";
+      echo "<input type='hidden' name='userID' value='" . $row["userID"] . "'>";
       echo "</form>";
       echo "</td>";
       echo "</tr>";
