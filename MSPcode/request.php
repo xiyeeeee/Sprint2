@@ -74,10 +74,9 @@
       }
 
       if ($trainingErr == ''){
-        $uidExists = uidExists($conn, $_SESSION['useruid'], $_SESSION['useruid']);
         $current_time = date('Y-m-d H:i:s');
         $status = "pending";
-        $userID = $uidExists['usersUid'];
+        $userID = $_POST["$userID"];
         $sql = "INSERT INTO requests (name, userID, Time, training, tlocation, remark, status) VALUES ('$name', '$userID', '$current_time', '$training', '$location', '$remark', '$status')";
 
         if ($conn->query($sql) === TRUE) {
@@ -121,7 +120,7 @@
     $uidExists = uidExists($conn, $_SESSION['useruid'], $_SESSION['useruid']);
     // Display the details of the logged-in user
      echo '<input type="text" id="name" name="name" value="' . $uidExists['usersUid'] . '" readonly>';
-
+     echo '<input type="hidden" id="userID" name="userID" value="'. $uidExists['usersId'].'"/>';
      $sql = "SELECT usersName, usersUid from users";
      $result = $conn-> query($sql);
      $conn-> close();

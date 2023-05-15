@@ -46,17 +46,17 @@
     $result2 = mysqli_query($conn, $sql2);
     $rowT = mysqli_fetch_assoc($result);
 
-    $userId = $_POST['userID'] 
+    $userID = $_POST['userID'];
     $tCategory = $rowT['tCategory'];
     $tLocation = $rowT['tLocation'];
     $tPrice = $rowT['tPrice'];
     $bItinerary = $rowT['tDescription'];
     $paymentStatus = false;
-    $tDate = $_POST["Time"]
-    $paymentDue = date('M d, Y', strtotime('-7 days', $tDate))
+    $tDate = $_POST["Time"];
+    $paymentDue = date('M d, Y', strtotime('-7 days', $tDate));
 
     $sqlB = "INSERT IGNORE INTO booking (userID, tName, tCategory, tLocation, tPrice, bItinerary, paymentStatus, paymentDue, tDate)
-              VALUES ("$userID", "$tName", "$tCategory", "$tLocation", "$tPrice", "$bItinerary", "$paymentStatus", "$paymentDue", "$tDate")";
+              VALUES ('$userID', '$tName', '$tCategory', '$tLocation', '$tPrice', '$bItinerary', '$paymentStatus', '$paymentDue', '$tDate')";
     mysqli_query($conn, $sqlB);
     
   } elseif (isset($_POST['deny'])) {
@@ -91,7 +91,7 @@
       echo "<form method='post' action=''>";
       echo "<input type='hidden' name='rID' value='" . $row["rID"] . "'>";
       if($row["status"] != "pending"){
-        echo "<p>". $row["status"] . "</p>"
+        echo "<p>". $row["status"] . "</p>";
       }else{
         echo "<button type='submit' name='accept'>Accept</button>";
         echo "<button type='submit' name='deny'>Deny</button>";
