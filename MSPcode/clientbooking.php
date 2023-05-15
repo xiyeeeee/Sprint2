@@ -49,7 +49,7 @@ if (isset($_SESSION['useruid'])) {
       echo "<th>Category</th>";
       echo "<th>Location</th>";
       echo "<th>Status</th>";
-      echo "<th>Date</th>";
+      echo "<th>Booking Date</th>";
       echo "<th>Deadline</th>";
       echo "<th>Action</th>";
       echo "</tr>";

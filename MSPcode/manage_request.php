@@ -53,7 +53,7 @@
     $bItinerary = $rowT['tDescription'];
     $paymentStatus = false;
     $tDate = $_POST["Time"];
-    $paymentDue = date('M d, Y', strtotime('-7 days', $tDate));
+    $paymentDue = date('Y-m-d', strtotime($tDate. ' + 7 days'));
 
     $sqlB = "INSERT IGNORE INTO booking (userID, tName, tCategory, tLocation, tPrice, bItinerary, paymentStatus, paymentDue, tDate)
               VALUES ('$userID', '$tName', '$tCategory', '$tLocation', '$tPrice', '$bItinerary', '$paymentStatus', '$paymentDue', '$tDate')";
