@@ -71,7 +71,7 @@
             echo "Location: " . $row["tLocation"] . "<br>";
             echo "Price: " . $row["tPrice"] . "<br>";
             echo "Itinerary: " . $row["bItinerary"] . "<br>";
-            echo "Payment Status: " . $row["paymentStatus"] . "<br>";
+            echo "Payment Status: " . ($row['paymentStatus'] ? "Paid":"Unpaid"). "<br>";
             echo "Payment Due: " . $row["paymentDue"] . "<br>";
             echo "Date: " . $row["tDate"] . "<br>";
             echo "<a href='payment_successful.php' class='button'>Pay</a>";
