@@ -92,9 +92,11 @@ if (isset($_SESSION['useruid'])) {
           echo "<form method='post' action=''>";
           echo "<input type='hidden' name='bID' value='" . $row["bID"] . "'>";
           
-          if ($dueDate && $dueDate < new DateTime() || $row['paymentStatus']) {
-              echo "<button type='submit' name='pay' disabled class='disabled-pay-button'>Pay</button>";
-          } else {
+          if ($row['paymentStatus']) {
+            echo "<button type='submit' name='pay' disabled '>Pay</button>";
+          }elseif ($dueDate && $dueDate < new DateTime() && !$row['paymentStatus']){
+            echo "<button type='submit' name='pay' disabled class='disabled-pay-button'>Pay</button>";
+          }else {
               echo "<button type='submit' name='pay'>Pay</button>";
           }
           
