@@ -435,6 +435,21 @@
     visibility: visible;
     opacity: 1;
   }
+
+  .disabled-button {
+    background-color: grey;
+    cursor: not-allowed;
+  }
+  
+  .action-button {
+    background-color: blue;
+    color: white;
+  }
+  
+  .action-button:disabled {
+    background-color: grey;
+    cursor: not-allowed;
+  }
   /*Change Password*/
   .change-password-form{
       color: black;
@@ -699,6 +714,11 @@
 
   input[type="submit"]:hover {
     background-color: #3e8e41;
+  }
+  .success-message {
+    color: green;
+    font-weight: bold;
+    display: none;
   }
   /*Claudia CSS*/
     body {

@@ -12,7 +12,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
         <title>BOOKING: ETMP</title>
     </head>
-<body id="profilebg">
+<body id="bookbg">
 <button id="back-to-top-btn"><i class="fas fa-angle-double-up"></i></button>
 
 <div class="header-container">
@@ -54,7 +54,7 @@ if (true) {
       echo "<table>";
       echo "<tr>";
       echo "<th>Booking ID</th>";
-      echo "<th>UserName</th>";
+      echo "<th>Username</th>";
       echo "<th>Training</th>";
       echo "<th>Category</th>";
       echo "<th>Location</th>";
@@ -94,7 +94,7 @@ if (true) {
       }
       echo "</table>";
     } else {
-      echo "No Bookings Made Yet";
+      echo "<div class='ctr'>No Bookings Made Yet</div>";
     }
   }
 ?>

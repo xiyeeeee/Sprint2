@@ -1,6 +1,7 @@
 <html>
 <head>
 	<link rel="stylesheet" type="text/css" href="css/style3.css">
+  <link rel="stylesheet" type="text/css" href="css/style.css">
 	<script src="script.js"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
 	<title>REQUEST: ETMP</title>
@@ -90,13 +91,13 @@
       echo "<td>";
       echo "<form method='post' action=''>";
       echo "<input type='hidden' name='rID' value='" . $row["rID"] . "'>";
-      if($row["status"] != "pending"){
-        echo "<button type='submit' name='accept' disabled>Accept</button>";
-        echo "<button type='submit' name='deny' disabled>Deny</button>";
-      }else{
-        echo "<button type='submit' name='accept'>Accept</button>";
-        echo "<button type='submit' name='deny'>Deny</button>";
-      }
+      if ($row["status"] != "pending") {
+        echo "<button type='submit' name='accept' disabled class='disabled-button'>Accept</button>";
+        echo "<button type='submit' name='deny' disabled class='disabled-button'>Deny</button>";
+    } else {
+        echo "<button type='submit' name='accept' class='action-button'>Accept</button>";
+        echo "<button type='submit' name='deny' class='action-button'>Deny</button>";
+    }
       echo "<input type='hidden' name='training' value='" . $row["training"] . "'>";
       echo "<input type='hidden' name='userID' value='" . $row["userID"] . "'>";
       echo "<input type='hidden' name='Time' value='" . $row["Time"] . "'>";
@@ -106,7 +107,7 @@
     }
     echo "</table>";
   } else {
-    echo "No requests";
+    echo "<div class='ctr'>No requests</div>";
   }
 
   mysqli_close($conn);
