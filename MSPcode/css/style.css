@@ -718,7 +718,7 @@
   .success-message {
     color: green;
     font-weight: bold;
-    display: none;
+    display: block;
   }
   /*Claudia CSS*/
     body {

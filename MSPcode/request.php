@@ -48,6 +48,8 @@
     ?>
 <?php
 
+    $success = "";
+
     $servername = "localhost";
     $username = "root";
     $password = "";
@@ -80,9 +82,9 @@
         $sql = "INSERT INTO requests (name, userID, Time, training, tlocation, remark, status) VALUES ('$name', '$userID', '$current_time', '$training', '$location', '$remark', '$status')";
 
         if ($conn->query($sql) === TRUE) {
-            echo "Your request is waiting for approve";
+           $success = "Submission successful! Request pending for Approval";
         } else {
-            echo "Something is wrong, please try later" . $conn->error;
+            $success =  "Something is wrong, please try later";
         }
       }
     }
@@ -336,8 +338,8 @@
 	<label for="remark">Remark:</label>
     <textarea name="remark" id="remark"></textarea>
 
-  <input name="save_training" type="submit" value="Submit" onclick="showSuccessMessage(event)">
-<div id="successMessage" class="success-message">Submission successful! Request pending for Approval</div>
+  <input name="save_training" type="submit" value="Submit">
+<div id="successMessage" class="success-message"><?php echo $success;?></div>
 <script>
     function showSuccessMessage(event) {
       event.preventDefault(); // Prevent form submission
