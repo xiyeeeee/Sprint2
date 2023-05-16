@@ -40,6 +40,7 @@
     $tLocation = $row["tLocation"];
     $tPrice = $row["tPrice"];
     $bItinerary = $row["bItinerary"];
+    $paymentStatus = $row["paymentStatus"];
     $paymentDue = $row["paymentDue"];
     $tDate = $row["tDate"];
   
@@ -59,10 +60,16 @@
           $tLocation = $_POST["tLocation"];
           $bItinerary = $_POST["bItinerary"];
           $tPrice = $_POST["tPrice"];
-          $tDate = $_POST["tDate"];
+          $tDate = $_POST["tDate"]; 
           $paymentDue = date('Y-m-d', strtotime($tDate. ' + 7 days'));
+          if($_POST["paid"] == "Paid"){
+            $paid = true;
+          }else{
+            $paid = false;
+          }
+          $paymentStatus = $paid;
 
-          $sql = "UPDATE booking SET tName = '$tName', tCategory = '$tCategory', tLocation ='$tLocation', bItinerary='$bItinerary', tPrice = '$tPrice', tDate = '$tDate' , paymentDue = '$paymentDue' WHERE bID = '$bID'";
+          $sql = "UPDATE booking SET tName = '$tName', tCategory = '$tCategory', tLocation ='$tLocation', bItinerary='$bItinerary', tPrice = '$tPrice', tDate = '$tDate' , paymentStatus = '$paid', paymentDue = '$paymentDue' WHERE bID = '$bID'";
 
           if ( mysqli_query($conn, $sql)){
             $output = $output . "Records updated successfully.";
@@ -102,8 +109,14 @@
         <p><label for="bItinerary">Booking Itinerary: </label>
         <input type="text" name="bItinerary" id="bItinerary" value="<?php echo $bItinerary?>"/></p>
 
-        <label for="tDate">Training Date:</label>
-        <input type="datetime-local" id="tDate" name="tDate" value="<?php echo $tDate?>"/>
+        <p><label for="tDate">Training Date:</label>
+        <input type="datetime-local" id="tDate" name="tDate" value="<?php echo $tDate?>"/></p>
+
+        <p><label>Payment Status: </label> <label for="paid">Paid</label>
+        <input type="radio" id="paid" name="paid" value="Paid" <?php echo ($paymentStatus)?"checked":"" ?>/>
+
+        <label for="paid">Unpaid</label>
+        <input type="radio" id="Unpaid" name="paid" value="Unpaid" <?php echo ($paymentStatus)?"":"checked" ?>/></p>
 
         <p><input type="submit" value="Edit" name="submit"/></p>
     </form>
