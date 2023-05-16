@@ -32,8 +32,8 @@ $pageTitle = "Payment Successful";
 			<h1 class="payment-alert">Your payment is successful</h1>
 			<p class="payment-msg">Please check for your booking details in the booking page.</p>
 			<div class="select-buttons">
-				<a href="#" class="abutton">Go to booking page</a>
-				<a href="#" class="abutton">Sign up for another plan</a>
+				<a href="clientbooking.php" class="abutton">Back booking page</a>
+				<a href="request.php" class="abutton">Sign up for another training</a>
 			</div>
 		</div>
 	</div>
