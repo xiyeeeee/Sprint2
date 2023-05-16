@@ -40,6 +40,11 @@ if (true) {
       header("Location:deleteBooking.php?bID=$id&client=false");
     }
 
+    if(isset($_POST["edit"])){
+      $id = $_POST["bID"];
+      header("Location:editBooking.php?bID=$id");
+    }
+
     $sql = "SELECT bID, userID, tName, tCategory, tLocation, tPrice, bItinerary, paymentStatus, paymentDue, tDate from booking";
 	  $result = $conn-> query($sql);
 
