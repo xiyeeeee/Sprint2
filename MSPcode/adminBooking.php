@@ -20,7 +20,7 @@
 <div class="logo">
     <h1 class="logo-text">Expert<span class="trademark">&reg;</span></h1>
 </div>
-<?php include 'navigation.php';?>
+<?php include 'adminNav.php';?>
 </div>
 </div>
 <br>
@@ -30,20 +30,17 @@
 <br>
 <br>
 <?php
-if (isset($_SESSION['useruid'])) {
+if (true) {
     require_once 'includes/db.inc.php';
     require_once 'includes/functions.inc.php';
     require_once 'includes/connect.php';
 
     if(isset($_POST["delete"])){
       $id = $_POST["bID"];
-      header("Location:deleteBooking.php?bID=$id&client=true");
+      header("Location:deleteBooking.php?bID=$id&client=false");
     }
 
-    $uidExists = uidExists($conn, $_SESSION['useruid'], $_SESSION['useruid']);
-    $userId = $uidExists["usersId"];
-
-    $sql = "SELECT bID, userID, tName, tCategory, tLocation, tPrice, bItinerary, paymentStatus, paymentDue, tDate from booking WHERE userId = $userId";
+    $sql = "SELECT bID, userID, tName, tCategory, tLocation, tPrice, bItinerary, paymentStatus, paymentDue, tDate from booking";
 	  $result = $conn-> query($sql);
 
     if (mysqli_num_rows($result) > 0) {
@@ -83,7 +80,7 @@ if (isset($_SESSION['useruid'])) {
         echo "<td>";
         echo "<form method='post' action=''>";
         echo "<input type='hidden' name='bID' value='" . $row["bID"] . "'>";
-        echo "<button type='submit' name='pay' " . ($dueDate && $dueDate < new DateTime() ? "disabled" : "") . ">Pay</button>";
+        echo "<button type='submit' name='edit' >Edit</button>";
         echo "<button type='submit' name='delete' >Delete</button>";
         echo "</form>";
         echo "</td>";
