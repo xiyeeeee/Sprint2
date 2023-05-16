@@ -35,6 +35,11 @@ if (isset($_SESSION['useruid'])) {
     require_once 'includes/functions.inc.php';
     require_once 'includes/connect.php';
 
+    if(isset($_POST["pay"])){
+      $id = $_POST["bID"];
+      header("Location:payment.php?bID=$id&client=true");
+    }
+
     if(isset($_POST["delete"])){
       $id = $_POST["bID"];
       header("Location:deleteBooking.php?bID=$id&client=true");

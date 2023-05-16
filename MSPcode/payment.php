@@ -44,53 +44,49 @@
     <br>
 </article>
 
-<?php
+<form action='<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>' method='post'>
+    <?php
+    
+    $bID = $_GET['bID'];
 
-// Display training details and payment form
-function displayTrainingDetails($tId)
-{
-    // Retrieve the training details based on the trainingId
-    $trainingDetails = getTrainingDetails($tId);
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "expert_db";
 
-    // Display the training details, including the price
-    echo 'Training: ' . $trainingDetails['tName'] . '<br>';
-    echo 'Category: ' . $trainingDetails['tCategory'] . '<br>';
-    echo 'Location: ' . $trainingDetails['tLocation'] . '<br>';
-    echo 'Date: ' . $trainingDetails['tDate'] . '<br>';
-    echo 'Deadline: ' . $trainingDetails['paymentDue'] . '<br>';
-    echo 'Price: RM' . $trainingDetails['tPrice'] . '<br>';
+    $conn = new mysqli($servername, $username, $password, $dbname);
 
-    // Display the payment form
-    echo '<form action="process_payment.php" method="POST">';
-    echo '<input type="hidden" name="trainingId" value="' . $tId . '">';
-    echo '<label>Card Number:</label>';
-    echo '<input type="text" name="cardNumber"><br>';
-    echo '<label>Card Expiry:</label>';
-    echo '<input type="text" name="cardExpiry"><br>';
-    echo '<label>Card CVV:</label>';
-    echo '<input type="text" name="cardCVV"><br>';
-    echo '<input type="submit" value="Pay">';
-    echo '</form>';
-}
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
 
-// Get the training details from the trainingId
-function getTrainingDetails($tId)
-{
-    // Retrieve the training details from your data source
-    // This can be a database query, API call, or any other method to fetch the details associated with the trainingId
+    $sql = "SELECT * FROM booking WHERE bID='$bID'";
+    $result = $conn->query($sql);
 
-    // Example: Fetching the training details from a database
-    $trainingDetails = "SELECT bID, usersName, tName, tCategory, tLocation, tPrice, bItenerary, paymentStatus, paymentDue, tDate from booking WHERE usersName = $uidExists";
-    // Code to retrieve the training details from the database based on the trainingId
+    if ($result->num_rows > 0) {
+        while($row = $result->fetch_assoc()) {
+            echo "ID: " . $row["bID"] . "<br>";
+            echo "Name: " . $row["tName"] . "<br>";
+            echo "Category: " . $row["tCategory"] . "<br>";
+            echo "Location: " . $row["tLocation"] . "<br>";
+            echo "Price: " . $row["tPrice"] . "<br>";
+            echo "Itinerary: " . $row["bItinerary"] . "<br>";
+            echo "Payment Status: " . $row["paymentStatus"] . "<br>";
+            echo "Payment Due: " . $row["paymentDue"] . "<br>";
+            echo "Date: " . $row["tDate"] . "<br>";
+            echo "<a href='payment_successful.php' class='button'>Pay</a>";
+            echo "<button id='card-pay-button' onclick='showCardInput()' type='button'>Card Pay</button>"; 
+            echo "<div id='card-input-container' style='display: none;'>";
+            echo "<input type='text' id='card-input' name='cardNumber' placeholder='Enter Card Number' />";
+            echo "<a href='payment_successful.php' class='button'>Pay</a>";
+            echo "</div>";
+        }
+    } else {
+        echo "0 results";
+    }
 
-    return $trainingDetails;
-}
-
-// Example usage
-$trainingId = $_GET['trainingId']; // Get the trainingId from the URL parameter or any other source
-
-displayTrainingDetails($trainingId);
-?>
+    $conn->close();
+    ?>
 
 
 <br>
@@ -98,5 +94,13 @@ displayTrainingDetails($trainingId);
 <script src="https://kit.fontawesome.com/2076012a21.js" crossorigin="anonymous"></script>
 <script src="script/buttontop.js"></script>
 <script src="script/app.js"></script>
+<script>
+    function showCardInput() {
+        var cardPayButton = document.getElementById("card-pay-button");
+        var cardInputContainer = document.getElementById("card-input-container");
+        cardPayButton.style.display = "none";
+        cardInputContainer.style.display = "block";
+    }
+</script>
 </body>
 </html>
