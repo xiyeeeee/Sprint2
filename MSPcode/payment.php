@@ -47,7 +47,13 @@
 <form action='<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>' method='post'>
     <?php
     
-    $bID = $_GET['bID'];
+    if(isset($_GET['bID'])){
+        $bID = $_GET['bID'];
+    }else{
+        $bID = $_POST['bID'];
+    }
+
+    
 
     $servername = "localhost";
     $username = "root";
@@ -62,6 +68,13 @@
 
     $sql = "SELECT * FROM booking WHERE bID='$bID'";
     $result = $conn->query($sql);
+
+    if(isset($_POST["Pay"])){
+        $sql2 = "UPDATE booking SET paymentStatus = true WHERE bID='$bID'";
+        if(mysqli_query($conn, $sql2)){
+            header("Location:payment_successful.php");
+        }
+    }
 
     if ($result->num_rows > 0) {
         while($row = $result->fetch_assoc()) {
@@ -78,7 +91,9 @@
             echo "<button id='card-pay-button' onclick='showCardInput()' type='button'>Card Pay</button>"; 
             echo "<div id='card-input-container' style='display: none;'>";
             echo "<input type='text' id='card-input' name='cardNumber' placeholder='Enter Card Number' />";
-            echo "<a href='payment_successful.php' class='button'>Pay</a>";
+            echo "<form method='post' action=''>";
+            echo "<input type='hidden' name='bID' value='" . $row["bID"] . "'>";
+            echo "<input type='submit' id='Pay' name='Pay' value='Pay' />";
             echo "</div>";
         }
     } else {
