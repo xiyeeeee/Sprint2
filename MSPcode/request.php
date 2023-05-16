@@ -336,7 +336,16 @@
 	<label for="remark">Remark:</label>
     <textarea name="remark" id="remark"></textarea>
 
-<input name="save_training" type="Submit" value="Submit">
+  <input name="save_training" type="submit" value="Submit" onclick="showSuccessMessage(event)">
+<div id="successMessage" class="success-message">Submission successful! Request pending for Approval</div>
+<script>
+    function showSuccessMessage(event) {
+      event.preventDefault(); // Prevent form submission
+
+      var successMessage = document.getElementById("successMessage");
+      successMessage.style.display = "block";
+    }
+  </script>
 <script src="transfer.js"></script>
 <script>
   /*var trainingSelect = document.getElementById("training");

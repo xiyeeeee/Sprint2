@@ -601,4 +601,19 @@ button[name="accept"] {
     background: rgba(0, 0, 0, 0.5)url(../img/add_training.jpg) no-repeat center center fixed;
     background-size: cover;
   }
+
+  button[disabled],
+  button.disabled {
+    background-color: grey;
+    color: white;
+    cursor: not-allowed;
+  }
+  
+  
+  button[disabled]:hover,
+  button.disabled:hover {
+    background-color: grey;
+    color: white;
+    opacity: 1;
+  }
   

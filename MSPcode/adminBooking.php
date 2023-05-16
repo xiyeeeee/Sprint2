@@ -8,11 +8,11 @@
         <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
         <link rel="shortcut icon" href="img/fav-icon.jpg" type="image/jpg">
         <link rel="stylesheet" type="text/css" href="css/style.css">
-
+        <link rel="stylesheet" type="text/css" href="css/style5.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
         <title>BOOKING: ETMP</title>
     </head>
-<body id="profilebg">
+<body id="bookbg">
 <button id="back-to-top-btn"><i class="fas fa-angle-double-up"></i></button>
 
 <div class="header-container">
@@ -40,13 +40,21 @@ if (true) {
       header("Location:deleteBooking.php?bID=$id&client=false");
     }
 
+    if(isset($_POST["edit"])){
+      $id = $_POST["bID"];
+      header("Location:editBooking.php?bID=$id");
+    }
+
     $sql = "SELECT bID, userID, tName, tCategory, tLocation, tPrice, bItinerary, paymentStatus, paymentDue, tDate from booking";
 	  $result = $conn-> query($sql);
+
+    
 
     if (mysqli_num_rows($result) > 0) {
       echo "<table>";
       echo "<tr>";
       echo "<th>Booking ID</th>";
+      echo "<th>Username</th>";
       echo "<th>Training</th>";
       echo "<th>Category</th>";
       echo "<th>Location</th>";
@@ -57,16 +65,14 @@ if (true) {
       echo "</tr>";
       while ($row = mysqli_fetch_assoc($result)) {
         $bID = $row["bID"];
-        $paymentDue = $row["paymentDue"];
-        $dueDate = DateTime::createFromFormat('Y-m-d H:i:s', $paymentDue); // Assuming the format of the paymentDue field is 'Y-m-d H:i:s'
+        $userId = $row["userID"];
+        $sql2 = "SELECT usersUid from users WHERE usersID = '$userId'";
+        $result2 = $conn-> query($sql2);
+        $row2 = mysqli_fetch_assoc($result2);
 
-        if ($dueDate && $dueDate < new DateTime()) {
-            echo "<tr class='disabled'>";
-        } else {
-            echo "<tr>";
-        }
-        
+        echo "<tr>";
         echo "<td>" . $row["bID"] . "</td>";
+        echo "<td>" . $row2["usersUid"] . "</td>";
         echo "<td>" . $row["tName"] . "</td>";
         echo "<td>" . $row["tCategory"] . "</td>";
         echo "<td>" . $row["tLocation"] . "</td>";
@@ -88,7 +94,7 @@ if (true) {
       }
       echo "</table>";
     } else {
-      echo "No Bookings Made Yet";
+      echo "<div class='ctr'>No Bookings Made Yet</div>";
     }
   }
 ?>

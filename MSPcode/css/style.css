@@ -39,6 +39,11 @@
     background-size: cover;
     background-blend-mode: darken;
   }
+  #bookbg{
+    background: rgba(0, 0, 0, 0.5)url(../img/pbg.jpg) no-repeat center center fixed;
+    background-size: cover;
+    background-blend-mode: darken;
+  }
   /*REGISTER*/
   .register_section{
       position: relative;
@@ -400,6 +405,51 @@
     margin-bottom: 5px;
   }
 
+  .ctr{
+    text-align: center;
+    font-size: 40px;
+    color: white;
+    font-style: italic;
+    font-weight: bold;
+  }
+  .disabled-pay-button {
+    position: relative;
+  }
+  
+  .disabled-pay-button:disabled::after {
+    content: 'Payment is due!';
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: red;
+    color: white;
+    padding: 5px;
+    font-size: 12px;
+    white-space: nowrap;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.5s ease-in-out;
+  }
+  
+  .disabled-pay-button:disabled:hover::after {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .disabled-button {
+    background-color: grey;
+    cursor: not-allowed;
+  }
+  
+  .action-button {
+    background-color: blue;
+    color: white;
+  }
+  
+  .action-button:disabled {
+    background-color: grey;
+    cursor: not-allowed;
+  }
   /*Change Password*/
   .change-password-form{
       color: black;
@@ -664,6 +714,11 @@
 
   input[type="submit"]:hover {
     background-color: #3e8e41;
+  }
+  .success-message {
+    color: green;
+    font-weight: bold;
+    display: none;
   }
   /*Claudia CSS*/
     body {
