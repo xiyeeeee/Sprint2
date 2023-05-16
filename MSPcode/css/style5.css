@@ -28,6 +28,18 @@ table {
     background-color: lightgreen;
     color: black;
   }
+
+  button[name="edit"] {
+    background-color: darkgreen;
+    color: white;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  }
+  
+  
+  button[name="edit"]:hover {
+    background-color: lightgreen;
+    color: black;
+  }
   
   
   button[name="delete"] {
