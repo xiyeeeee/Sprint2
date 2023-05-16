@@ -91,7 +91,8 @@
       echo "<form method='post' action=''>";
       echo "<input type='hidden' name='rID' value='" . $row["rID"] . "'>";
       if($row["status"] != "pending"){
-        echo "<p>". $row["status"] . "</p>";
+        echo "<button type='submit' name='accept' disabled>Accept</button>";
+        echo "<button type='submit' name='deny' disabled>Deny</button>";
       }else{
         echo "<button type='submit' name='accept'>Accept</button>";
         echo "<button type='submit' name='deny'>Deny</button>";
