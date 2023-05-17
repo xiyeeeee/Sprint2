@@ -68,7 +68,7 @@
         margin-top: 30px;
       }
   
-      .fbutton {
+      .fbutton1 {
         background-color: #0d2945;
         color: #FFFFFF;
         padding: 5px 20px;
@@ -78,7 +78,24 @@
         margin: 0 25px;
       }
   
-      .fbutton:hover {
+      .fbutton1:hover {
+        background-color: #F5F5F5;
+        color: #7f0909;
+        border: 2px solid #7f0909;
+        transition: all 0.3s ease-in-out;
+      }
+
+      .fbutton2 {
+        background-color: #0d4532;
+        color: #FFFFFF;
+        padding: 5px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-size: 18px;
+        margin: 0 25px;
+      }
+  
+      .fbutton2:hover {
         background-color: #F5F5F5;
         color: #7f0909;
         border: 2px solid #7f0909;
