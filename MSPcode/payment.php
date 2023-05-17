@@ -8,11 +8,12 @@
         <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
         <link rel="shortcut icon" href="img/fav-icon.jpg" type="image/jpg">
         <link rel="stylesheet" type="text/css" href="css/style.css">
+        <link rel="stylesheet" type="text/css" href="css/style6.css">
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
         <title>PAYMENT: ETMP</title>
     </head>
-<body id="profilebg">
+    <body id="searchTrainingProcessbg">
 <button id="back-to-top-btn"><i class="fas fa-angle-double-up"></i></button>
 
 <article>
@@ -24,27 +25,12 @@
     <?php include 'navigation.php';?>
   </div>
   </div>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
+   
 </article>
 
-<form action='<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>' method='post'>
+<div class="payment-container">
+  <form class="payment-form" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="post">
+  <form action='<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>' method='post'>
     <?php
     
     if(isset($_GET['bID'])){
@@ -78,31 +64,32 @@
 
     if ($result->num_rows > 0) {
         while($row = $result->fetch_assoc()) {
-            echo "ID: " . $row["bID"] . "<br>";
-            echo "Name: " . $row["tName"] . "<br>";
-            echo "Category: " . $row["tCategory"] . "<br>";
-            echo "Location: " . $row["tLocation"] . "<br>";
-            echo "Price: " . $row["tPrice"] . "<br>";
-            echo "Itinerary: " . $row["bItinerary"] . "<br>";
-            echo "Payment Status: " . ($row['paymentStatus'] ? "Paid":"Unpaid"). "<br>";
-            echo "Payment Due: " . $row["paymentDue"] . "<br>";
-            echo "Date: " . $row["tDate"] . "<br>";
-            echo "<a href='payment_successful.php' class='button'>Pay</a>";
+            echo "<div class='form-row'>ID: " . $row["bID"] . "</div>";
+            echo "<div class='form-row'>Name: " . $row["tName"] . "</div>";
+            echo "<div class='form-row'>Category: " . $row["tCategory"] . "</div>";
+            echo "<div class='form-row'>Location: " . $row["tLocation"] . "</div>";
+            echo "<div class='form-row'>Price: " . $row["tPrice"] . "</div>";
+            echo "<div class='form-row'>Itinerary: " . $row["bItinerary"] . "</div>";
+            echo "<div class='form-row'>Payment Status: " . ($row['paymentStatus'] ? "Paid":"Unpaid"). "</div>";
+            echo "<div class='form-row'>Payment Due: " . $row["paymentDue"] . "</div>";
+            echo "<div class='form-row'>Date: " . $row["tDate"] . "</div>";
+            echo "<a href='payment_successful.php' class='cash-pay-button'>Cash Pay</a>";
             echo "<button id='card-pay-button' onclick='showCardInput()' type='button'>Card Pay</button>"; 
             echo "<div id='card-input-container' style='display: none;'>";
             echo "<input type='text' id='card-input' name='cardNumber' placeholder='Enter Card Number' />";
-            echo "<form method='post' action=''>";
             echo "<input type='hidden' name='bID' value='" . $row["bID"] . "'>";
-            echo "<input type='submit' id='Pay' name='Pay' value='Pay' />";
+            echo "<input type='submit' id='pay-button' name='Pay' value='Pay' class='pay-button' />";
             echo "</div>";
         }
     } else {
         echo "0 results";
     }
+    
 
     $conn->close();
     ?>
-
+</form>
+</div>
 
 <br>
 <br>
@@ -117,5 +104,9 @@
         cardInputContainer.style.display = "block";
     }
 </script>
+<?php
+  include('footer.php');
+  ?>
 </body>
+
 </html>
