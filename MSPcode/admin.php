@@ -117,7 +117,7 @@ $pageTitle = "Admin Dashboard";
     </a>
 
 
-        <a href="#">
+        <a href="adminBooking.php">
         <div class="category">
           <div class="slideshow">
             <img src="./img/FileManagement.png">
@@ -137,7 +137,7 @@ $pageTitle = "Admin Dashboard";
       </div>
       <div class="new-section">
         <div class="left-column">
-        <p>Introduction of the company. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vel viverra diam, eu luctus odio. Sed sed aliquam leo. Nam commodo augue sit amet neque varius vehicula. Nunc laoreet dolor nec nunc suscipit, vel porttitor ipsum laoreet. Fusce maximus suscipit pretium. Duis a enim at turpis dignissim maximus. Nullam congue erat ut diam hendrerit, nec convallis turpis bibendum. Donec ultrices, neque id aliquet malesuada, urna augue sodales lectus, eu porttitor urna leo at orci. Pellentesque fringilla finibus ex, id scelerisque lectus dignissim et.</p>
+        <p>Welcome to the Expert Training Portal, your go-to platform for booking personalized training plans. Discover a wide range of comprehensive programs in various domains, from technology to leadership. Our user-friendly portal enables easy browsing and detailed program exploration. Book your preferred training dates and locations effortlessly, track your progress, and access supplementary resources through your personalized dashboard. Stay informed with timely notifications and updates. With a focus on quality and client satisfaction, our portal ensures a seamless and efficient experience. Join us on the Expert Training Portal to unlock your potential and shape a brighter future through continuous growth.</p>
     </div>
     <div class="right-column">
   <div class="slideshow-container">
