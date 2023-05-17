@@ -12,7 +12,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
         <title>BOOKING: ETMP</title>
     </head>
-<body id="bookbg">
+<body id="searchTrainingbg">
 <button id="back-to-top-btn"><i class="fas fa-angle-double-up"></i></button>
 
 <div class="header-container">
