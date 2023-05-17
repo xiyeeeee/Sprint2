@@ -88,7 +88,7 @@
             echo "<input type='text' id='card-input' name='cardNumber' placeholder='Enter Card Number' />";
             echo "<form method='post' action=''>";
             echo "<input type='hidden' name='bID' value='" . $row["bID"] . "'>";
-            echo "<input type='submit' id='Pay' name='Pay' value='Pay' />";
+            echo "<input type='submit' id='pay-button' name='Pay' value='Pay' />";
             echo "</div>";
         }
     } else {
