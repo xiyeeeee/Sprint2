@@ -1,0 +1,76 @@
+ 
+table {
+    border: 5px solid #060644;
+    border-collapse: collapse;
+    padding: 20px;
+    background-color: rgb(215, 203, 235);
+    margin-bottom: 300px;
+    margin-left: 180px;
+  }
+  
+
+  th,
+  td {
+    color: black;
+    padding: 15px; 
+  }
+  
+  
+  button[name="pay"] {
+    background-color: darkgreen;
+    color: white;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  }
+  
+  
+  button[name="pay"]:hover {
+    background-color: lightgreen;
+    color: black;
+  }
+
+  button[name="edit"] {
+    background-color: darkgreen;
+    color: white;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  }
+  
+  
+  button[name="edit"]:hover {
+    background-color: lightgreen;
+    color: black;
+  }
+  
+  
+  button[name="delete"] {
+    background-color: darkred;
+    color: white;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  }
+  
+  
+  button[name="delete"]:hover {
+    background-color: lightcoral;
+    color: black;
+  }
+  
+  
+  button[disabled],
+  button.disabled {
+    background-color: grey;
+    color: white;
+    cursor: not-allowed;
+  }
+  
+  
+  button[disabled]:hover,
+  button.disabled:hover {
+    background-color: grey;
+    color: white;
+    opacity: 1;
+  }
+
+  .editbook
+  {
+    margin-left: 200px;
+  }
+  

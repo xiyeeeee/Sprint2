@@ -1,6 +1,7 @@
 <html>
 <head>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="css/style7.css">
 	<script src="script.js"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
 	<title>TRAINING: ETMP</title>
@@ -118,7 +119,7 @@
         <label for="paid">Unpaid</label>
         <input type="radio" id="Unpaid" name="paid" value="Unpaid" <?php echo ($paymentStatus)?"":"checked" ?>/></p>
 
-        <p><input type="submit" value="Edit" name="submit"/></p>
+        <p class="editbook"><input type="submit" value="Edit" name="submit"/></p>
     </form>
     <p><?php echo $output?></p>
     </div>

@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="css/style6.css">
   <script src="script.js"></script>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
     <title></title>
@@ -38,10 +39,10 @@
     <?php
     
     ?>
-
-<div class="dltbody">
+<div class="dltbook-container"> 
+<div class="dltbodybooking">
     <!--<h1>Delete Training</h1>-->
-    
+     
     <form action='<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>' method='post'>
     <?php
     
@@ -49,10 +50,10 @@
         $bID = $_POST["bID"];
         if($_POST["submit"]=="Yes"){
             $sql ="DELETE FROM booking WHERE bID = '$bID'";
-            if(mysqli_query($conn, $sql)){
-                $deleted = "The Booking has been deleted";
-            }else{
-                $deleted = "Something went wrong!";
+            if (mysqli_query($conn, $sql)) {
+              $deleted = "<span class='success-message'>The Booking has been deleted</span>";
+            } else {
+              $deleted = "<span class='error-message'>Something went wrong!</span>";
             }
         }elseif($_POST["submit"]=="No"){
             if($client == "true"){
@@ -74,7 +75,7 @@
     <p><input type="hidden" value='<?php echo "$client"?>' name="client"/></p>
     <p class="warning"><?php echo $deleted?></p>
     </form>
-    </p>
+  </div>
     </div>
 
     <!--<footer>

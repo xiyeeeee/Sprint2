@@ -82,8 +82,8 @@
             echo "<div class='form-row'>Payment Status: " . ($row['paymentStatus'] ? "Paid":"Unpaid"). "</div>";
             echo "<div class='form-row'>Payment Due: " . $row["paymentDue"] . "</div>";
             echo "<div class='form-row'>Date: " . $row["tDate"] . "</div>";
-            echo "<a href='payment_successful.php' class='cash-pay-button'>Cash Pay</a>";
-            echo "<button id='card-pay-button' onclick='showCardInput()' type='button'>Card Pay</button>"; 
+            echo "<a href='payment_successful.php' class='cash-pay-button'>By Cash</a>";
+            echo "<button id='card-pay-button' onclick='showCardInput()' type='button'>Card Payment</button>"; 
             echo "<div id='card-input-container' style='display: none;'>";
             echo "<input type='text' id='card-input' name='cardNumber' placeholder='Enter Card Number' />";
             echo "<form method='post' action=''>";

@@ -8,11 +8,11 @@
         <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
         <link rel="shortcut icon" href="img/fav-icon.jpg" type="image/jpg">
         <link rel="stylesheet" type="text/css" href="css/style.css">
-        <link rel="stylesheet" type="text/css" href="css/style5.css">
+        <link rel="stylesheet" type="text/css" href="css/style7.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
         <title>BOOKING: ETMP</title>
     </head>
-<body id="bookbg">
+<body id="searchTrainingProcessbg">
 <button id="back-to-top-btn"><i class="fas fa-angle-double-up"></i></button>
 
 <div class="header-container">
@@ -100,6 +100,9 @@ if (true) {
 ?>
 <br>
 <br>
+<?php
+  include('footer.php');
+  ?>
 <script src="https://kit.fontawesome.com/2076012a21.js" crossorigin="anonymous"></script>
 <script src="script/buttontop.js"></script>
 </body>
