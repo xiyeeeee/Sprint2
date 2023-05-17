@@ -33,6 +33,7 @@
   <form action='<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>' method='post'>
     <?php
     
+    $bID = $_GET['bID'];
     if(isset($_GET['bID'])){
         $bID = $_GET['bID'];
     }else{
@@ -56,9 +57,17 @@
     $result = $conn->query($sql);
 
     if(isset($_POST["Pay"])){
-        $sql2 = "UPDATE booking SET paymentStatus = true WHERE bID='$bID'";
-        if(mysqli_query($conn, $sql2)){
-            header("Location:payment_successful.php");
+        $cardNumber = $_POST["cardNumber"];
+
+        if (empty($cardNumber)) {
+            echo "<script>alert('Please enter a card number.');</script>";
+        } elseif (!is_numeric($cardNumber)) {
+            echo "<script>alert('Card number must be numeric.');</script>";
+        } else {
+            $sql2 = "UPDATE booking SET paymentStatus = true WHERE bID='$bID'";
+            if(mysqli_query($conn, $sql2)){
+                header("Location:payment_successful.php");
+            }
         }
     }
 
@@ -77,8 +86,9 @@
             echo "<button id='card-pay-button' onclick='showCardInput()' type='button'>Card Pay</button>"; 
             echo "<div id='card-input-container' style='display: none;'>";
             echo "<input type='text' id='card-input' name='cardNumber' placeholder='Enter Card Number' />";
+            echo "<form method='post' action=''>";
             echo "<input type='hidden' name='bID' value='" . $row["bID"] . "'>";
-            echo "<input type='submit' id='pay-button' name='Pay' value='Pay' class='pay-button' />";
+            echo "<input type='submit' id='Pay' name='Pay' value='Pay' />";
             echo "</div>";
         }
     } else {
