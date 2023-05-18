@@ -66,7 +66,7 @@
         } else {
             $sql2 = "UPDATE booking SET paymentStatus = true WHERE bID='$bID'";
             if(mysqli_query($conn, $sql2)){
-                header("Location:payment_successful.php");
+                header("Location:cashpayment.php");
             }
         }
     }
@@ -82,7 +82,7 @@
             echo "<div class='form-row'>Payment Status: " . ($row['paymentStatus'] ? "Paid":"Unpaid"). "</div>";
             echo "<div class='form-row'>Payment Due: " . $row["paymentDue"] . "</div>";
             echo "<div class='form-row'>Date: " . $row["tDate"] . "</div>";
-            echo "<a href='payment_successful.php' class='cash-pay-button'>By Cash</a>";
+            echo "<a href='cashpayment.php' class='cash-pay-button'>By Cash</a>";
             echo "<button id='card-pay-button' onclick='showCardInput()' type='button'>Card Payment</button>"; 
             echo "<div id='card-input-container' style='display: none;'>";
             echo "<input type='text' id='card-input' name='cardNumber' placeholder='Enter Card Number' />";
