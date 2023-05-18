@@ -33,8 +33,8 @@ $pageTitle = "Payment Failed";
 			<p class="fpayment-msg">We are pleased to receive your booking. Your payment could be made by cash <br>on the day of the training at the training venue.
             </p>
 			<div class="fselect-buttons">
-				<a href="#" class="fbutton1">Back to booking page</a>
-				<a href="#" class="fbutton2">Check out more trainings</a>
+				<a href="clientbooking.php" class="fbutton1">Back to booking page</a>
+				<a href="client.php" class="fbutton2">Check out more trainings</a>
 			</div>
 		</div>
 	</div>
