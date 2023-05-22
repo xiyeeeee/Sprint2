@@ -1,12 +1,14 @@
-table {
+/*table {
     margin: 0 auto;
-  }
+  }*/
   
 table {
     border: 5px solid #060644;
     border-collapse: collapse;
     padding: 20px;
     background-color: rgb(153, 186, 214);
+    margin-bottom: 300px;
+    margin-left: 250px;
   }
   
 

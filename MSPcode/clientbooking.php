@@ -112,9 +112,13 @@ if (isset($_SESSION['useruid'])) {
   }
   }
 ?>
-<br>
-<br>
+
+
+
 <script src="https://kit.fontawesome.com/2076012a21.js" crossorigin="anonymous"></script>
 <script src="script/buttontop.js"></script>
+<?php
+  include('footer.php');
+  ?>
 </body>
 </html>
