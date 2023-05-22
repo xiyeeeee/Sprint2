@@ -417,7 +417,7 @@
   }
   
   .disabled-pay-button:disabled::after {
-    content: 'Payment is due!';
+    content: 'Payment Overdue!!';
     position: absolute;
     top: 100%;
     left: 0;
