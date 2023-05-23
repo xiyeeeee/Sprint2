@@ -48,10 +48,13 @@ if (true) {
     $sql = "SELECT bID, userID, tName, tCategory, tLocation, tPrice, bItinerary, paymentStatus, paymentDue, tDate from booking";
 	  $result = $conn-> query($sql);
 
+    
+
     if (mysqli_num_rows($result) > 0) {
       echo "<table>";
       echo "<tr>";
       echo "<th>Booking ID</th>";
+      echo "<th>UserName</th>";
       echo "<th>Training</th>";
       echo "<th>Category</th>";
       echo "<th>Location</th>";
@@ -62,16 +65,14 @@ if (true) {
       echo "</tr>";
       while ($row = mysqli_fetch_assoc($result)) {
         $bID = $row["bID"];
-        $paymentDue = $row["paymentDue"];
-        $dueDate = DateTime::createFromFormat('Y-m-d H:i:s', $paymentDue); // Assuming the format of the paymentDue field is 'Y-m-d H:i:s'
+        $userId = $row["userID"];
+        $sql2 = "SELECT usersUid from users WHERE usersID = '$userId'";
+        $result2 = $conn-> query($sql2);
+        $row2 = mysqli_fetch_assoc($result2);
 
-        if ($dueDate && $dueDate < new DateTime()) {
-            echo "<tr class='disabled'>";
-        } else {
-            echo "<tr>";
-        }
-        
+        echo "<tr>";
         echo "<td>" . $row["bID"] . "</td>";
+        echo "<td>" . $row2["usersUid"] . "</td>";
         echo "<td>" . $row["tName"] . "</td>";
         echo "<td>" . $row["tCategory"] . "</td>";
         echo "<td>" . $row["tLocation"] . "</td>";
